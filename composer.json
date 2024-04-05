@@ -1,0 +1,39 @@
+{
+    "name": "imynely/pay",
+    "description": ":package_description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "author name"
+        }
+    ],
+    "homepage": "https://github.com/imunely/pay",
+    "keywords": ["Laravel", "Pay"],
+    "require": {
+        "illuminate/support": "~9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Imynely\\Pay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Imynely\\Pay\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Imynely\\Pay\\PayServiceProvider"
+            ],
+            "aliases": {
+                "Pay": "Imynely\\Pay\\Facades\\Pay"
+            }
+        }
+    }
+}
