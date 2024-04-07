@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Imynely\Pay\Penalty;
 
 class CreatePenaltyTable extends Migration
 {
@@ -18,7 +19,7 @@ class CreatePenaltyTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->unsignedDecimal('amount', 14);
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(Penalty::WAIT);
             $table->unsignedBigInteger('initiator_id');
             $table->timestamps();
         });

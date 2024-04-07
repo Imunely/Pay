@@ -35,8 +35,25 @@ abstract class AbstractConfig implements Config
     }
 
 
-    public function config(): \App\PaymentSystem|array
+    public function config(): object
     {
         return $this->config;
+    }
+
+    /**
+     *
+     * @return object|\Illuminate\Support\Collection
+     */
+    protected function getGateway()
+    {
+        if (!array_key_exists('gateway', $this->config)) {
+            throw new \InvalidArgumentException("Gataway not supported. See config", 1);
+        }
+
+        if (is_array($this->config['gateway'])) {
+            $this->config['gateway'] = collect($this->config['gateway']);
+        }
+
+        return $this->config['gateway'];
     }
 }

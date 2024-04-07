@@ -28,7 +28,7 @@ return [
             'client_id' => (string) env('COINPAY_MID'),
             'client_secret' => env('COINPAY_SKEY'),
 
-            'gateways' => File::get(storage_path('app/payments/payforu')),
+            // 'gateways' => File::get(storage_path('app/payments/payforu')),
 
         ],
 
@@ -37,7 +37,7 @@ return [
             'client_id' => (string) env('KASSIFY_MID'),
             'client_secret' => env('KASSIFY_SKEY'),
 
-            'gateways' => File::get(storage_path('app/payments/payforu')),
+            // 'gateways' => File::get(storage_path('app/payments/payforu')),
         ],
 
         'betatransfer' => [
@@ -45,7 +45,7 @@ return [
             'client_secret' => env('BETATRANSFER_SKEY'),
             'api_url' => env('BETATRANSFER_URL'),
 
-            'gateways' => File::get(storage_path('app/payments/payforu')),
+            // 'gateways' => File::get(storage_path('app/payments/payforu')),
         ],
 
         'skypay' => [
@@ -56,7 +56,7 @@ return [
                 'back_url' => env('APP_URL'),
             ],
 
-            'gateways' => File::get(storage_path('app/payments/payforu')),
+            // 'gateways' => File::get(storage_path('app/payments/payforu')),
 
         ],
 
@@ -66,6 +66,6 @@ return [
             'client_id' => (string) env('PAYOU_MID')
         ],
 
-        'gateways' => File::get(storage_path('app/payments/payou')),
+        // 'gateways' => File::get(storage_path('app/payments/payou')),
     ]
 ];

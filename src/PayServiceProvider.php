@@ -33,9 +33,6 @@ class PayServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/payments.php', 'payments');
-
-        
         $this->app->singleton('pay', function ($app) {
             return new PaymentManager();
         });
@@ -66,7 +63,13 @@ class PayServiceProvider extends ServiceProvider
         // publiching migrations 
 
         $this->publishes([
-            __DIR__ . '/../migrations/' => base_path('migrations/imunely'),
+            __DIR__ . '/../migrations/' => base_path('database/migrations'),
+        ]);
+
+        // publiching models
+
+        $this->publishes([
+            __DIR__ . '/../models/' => base_path('app'),
         ]);
 
         // Publishing the views.

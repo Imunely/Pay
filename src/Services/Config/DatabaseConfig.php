@@ -57,4 +57,9 @@ final class DatabaseConfig extends AbstractConfig
     {
         return json_decode($this->config->additional, true);
     }
+
+    public function gateway(): object
+    {
+        return $this->config['gateway'];
+    }
 }

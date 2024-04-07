@@ -2,39 +2,33 @@
 
 namespace Imynely\Pay\Drivers;
 
-use Illuminate\Http\Request;
-use Imynely\Pay\Contract\Config;
-use Imynely\Pay\Contract\Payment;
+use Imynely\Pay\Providers\CoinPayProvider;
 
-class CoinPayDriver 
+class CoinPayDriver extends AbstractDriver
 {
-
-    protected $attributes = [];
-
-    protected $config = [];
-
-    public function __construct(Request $request, Config $config)
-    {
-        $this->config = $config;
-    }
-
 
     public function redirect()
     {
     }
 
-
     public function create(array $attributes = [])
     {
-        // Реализуйте создание заказа для платежной системы Qiwi
+        parent::create($attributes);
+
+        return $this->buildProvider(CoinpayProvider::class)
+            ->createTransaction($attributes['amount'], $attributes['penalty']);
+    }
+
+    function callback()
+    {
+    }
+
+    function status()
+    {
     }
 
     public function getUrl()
     {
         // Реализуйте получение URL платежа для платежной системы Qiwi
-    }
-
-    function buildProvider()
-    {
     }
 }

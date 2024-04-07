@@ -55,33 +55,8 @@ final class ArrayConfig extends AbstractConfig
         return $this->config['additional'] ?? [];
     }
 
-    function commission(): float
+    public function gateway(): object
     {
-        return $this->getGateway('commission', 1.00);
-    }
-
-    function systemGateway(): string
-    {
-        return $this->getGateway('system_gateway');
-    }
-
-    function merchantCommission(): float
-    {
-        return $this->getGateway('merchant_commission', 1.00);
-    }
-
-    function currency(): string
-    {
-        return $this->getGateway('currency');
-    }
-
-    private function getGateway(string $key, mixed $default = null): mixed
-    {
-        if (!array_key_exists('gateway', $this->config)) {
-            throw new \InvalidArgumentException("Gataway not supported. See config", 1);
-        }
-
-        return array_key_exists($key, $this->config['gateway']) ?
-            $this->config['gateway'][$key] : $default;
+        return (object) $this->getGateway();
     }
 }

@@ -6,6 +6,11 @@ use App\Payment as Paying;
 
 trait Payment
 {
+    /**
+     *
+     * @param array $data
+     * @return \App\Payment|false
+     */
     public function create(array $data)
     {
         return Paying::create($data);
@@ -21,5 +26,15 @@ trait Payment
         ])->first();
 
         return $payment ? $payment : $this->create($data);
+    }
+
+    /**
+     *
+     * @param integer $id
+     * @return \App\Payment|null
+     */
+    public function getPayment(int $id)
+    {
+        return Paying::where('id', $id)->first();
     }
 }

@@ -2,71 +2,43 @@
 
 namespace Imynely\Pay\Drivers;
 
-use App\Payments\CoinPay;
-use Illuminate\Http\Request;
-use Imynely\Pay\Contract\Payment;
-use Imynely\Pay\Drivers\Gateways\CoinPayGateway;
-use Imynely\Pay\Drivers\Gateways\PayouGateway;
-use Imynely\Pay\Drivers\Providers\PayouProvider;
+use Imynely\Pay\Contract\Transaction;
+use Imynely\Pay\Providers\PayouProvider;
 
-class PayouDriver 
+class PayouDriver extends AbstractDriver
 {
-    protected $config = [];
-
-    /**
-     *
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    public function __construct(Request $request, array $config)
+    public function redirect()
     {
-        $this->config = $config;
-        $this->request = $request;
-
-        parent::__construct();
     }
 
-    public function create(array $attributes = [])
+    public function create(array $attributes = []): \App\Payment
     {
-        return $this->config;
-    }
+        parent::create($attributes);
 
-    public function createOrGet(array $attributes = [])
-    {
-        return $this->config;
-    }
-
-    public function redirect(float $amount, string $gateway): string
-    {
-        return new PayouProvider();
-
-        return '';
-    }
-
-    function ifNotExists()
-    {
-        $this->config['not_exists'] = true;
-
-        return $this;
+        return $this->provider()
+            ->createTransaction($attributes['amount'], $attributes['penalty']);
     }
 
     public function callback()
     {
-
+        return $this->provider()->createCallback();
     }
 
-    public function status(int $id = null)
+    function status()
     {
     }
 
-    function getUrl()
+    public function getUrl()
     {
     }
 
 
-    public function buildProvider()
+    private function provider(): Transaction
     {
-        return new PayouProvider();
+        if (!$this->provider) {
+            $this->provider = $this->buildProvider(PayouProvider::class);
+        }
+
+        return $this->provider;
     }
 }

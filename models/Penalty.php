@@ -1,11 +1,15 @@
 <?php
 
-namespace Imynely\Pay;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Penalty extends Model
 {
+    const PAID = 1;
+
+    const WAIT = 0;
+
     /**
      * The database table used by the model.
      *
