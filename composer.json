@@ -9,6 +9,7 @@
     ],
     "keywords": ["Laravel", "Pay"],
     "require": {
+        "imynely/pay": "dev-master"
         "illuminate/support": "~9"
     },
     "require-dev": {
