@@ -1,10 +1,10 @@
 {
     "name": "imynely/pay",
     "description": ":package_description",
-    "license": "license",
+    "license": "apache2",
     "authors": [
         {
-            "name": "author name"
+            "name": "Imynely"
         }
     ],
     "keywords": ["Laravel", "Pay"],
