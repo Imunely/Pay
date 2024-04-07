@@ -2,29 +2,71 @@
 
 namespace Imynely\Pay\Drivers;
 
+use App\Payments\CoinPay;
+use Illuminate\Http\Request;
 use Imynely\Pay\Contract\Payment;
+use Imynely\Pay\Drivers\Gateways\CoinPayGateway;
+use Imynely\Pay\Drivers\Gateways\PayouGateway;
+use Imynely\Pay\Drivers\Providers\PayouProvider;
 
-class PayouDriver implements Payment
+class PayouDriver 
 {
     protected $config = [];
 
-    public function __construct(array $config)
+    /**
+     *
+     * @var \Illuminate\Http\Request
+     */
+    protected $request;
+
+    public function __construct(Request $request, array $config)
     {
         $this->config = $config;
+        $this->request = $request;
+
+        parent::__construct();
     }
 
     public function create(array $attributes = [])
     {
-        return __CLASS__;
+        return $this->config;
     }
 
-    public function getUrl()
+    public function createOrGet(array $attributes = [])
     {
-        // Реализуйте получение URL платежа для платежной системы Qiwi
+        return $this->config;
     }
 
-    public function getAStatus()
+    public function redirect(float $amount, string $gateway): string
     {
-        // Реализуйте получение статуса заказа для платежной системы Qiwi
+        return new PayouProvider();
+
+        return '';
+    }
+
+    function ifNotExists()
+    {
+        $this->config['not_exists'] = true;
+
+        return $this;
+    }
+
+    public function callback()
+    {
+
+    }
+
+    public function status(int $id = null)
+    {
+    }
+
+    function getUrl()
+    {
+    }
+
+
+    public function buildProvider()
+    {
+        return new PayouProvider();
     }
 }

@@ -2,14 +2,17 @@
 
 namespace Imynely\Pay\Contract;
 
+use Illuminate\Http\Request;
 
 interface Payment
 {
-    public function __construct(array $config);
+    public function __construct(Request $request, Config $config);
 
-    public function create(array $attributes = []);
+    public function create(array $attributes);
 
-    public function getUrl();
+    public function callback();
 
-    public function getAStatus();
+    public function status();
+
+    public function redirect();
 }

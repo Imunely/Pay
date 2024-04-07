@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static \Imynely\Pay\Contract\Payment driver(string $driver)
- *
+ * @method static \Imynely\Pay\Contract\Payment withConfig(array $config)
  */
 
 class Pay extends Facade

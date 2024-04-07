@@ -1,0 +1,36 @@
+{
+    "inr": {
+        "Payou_UPI": {
+            "name": "ala_MoneyINR",
+            "commission": 1.13
+        },
+        "Payou_IMPS": {
+            "name": "IMPS_mir",
+            "commission": 1
+        },
+        "Payou_PayTM": {
+            "name": "card_INR_v4",
+            "commission": 1
+        }
+    },
+    "rub": {
+        "payou": {
+            "name": "card_RUB"
+        }
+    },
+    "kzt": {
+        "payou": {
+            "name": "card_KZT"
+        }
+    },
+    "uah": {
+        "payou": {
+            "name": "card_UAH"
+        }
+    },
+    "uzs": {
+        "payou": {
+            "name": "card_UZS_v2"
+        }
+    }
+}

@@ -1,42 +1,71 @@
 <?php
 
+use Illuminate\Support\Facades\File;
+
 return [
-    'payforu' => [
-        'url' => env('PAYFORU_URL'),
-        'customer_id' => env('PAYFORU_CUSTOMER_ID'),
-        'api_key' => env('PAYFORU_API_KEY'),
-        'api_signature_key' => env('PAYFORU_API_SIGNATURE_KEY'),
-        'callback' => env('PAYFORU_CALLBACK'),
-    ],
 
-    'coinpay' => [
-        'url' => env('COINPAY_URL'),
-        'mid' => (string) env('COINPAY_MID'),
-        'skey' => env('COINPAY_SKEY'),
-    ],
+    /**
+     * Supported database, array drivers
+     */
 
-    'kassify' => [
-        'url' => env('KASSIFY_URL'),
-        'mid' => (string) env('KASSIFY_MID'),
-        'skey' => env('KASSIFY_SKEY'),
-    ],
+    'default' => env('DEFAULT_DRIVER', 'database'),
 
-    'betatransfer' => [
-        'mid' => env('BETATRANSFER_MID'),
-        "skey" => env('BETATRANSFER_SKEY'),
-        'url' => env('BETATRANSFER_URL'),
-    ],
+    'array' => [
+        'payforu' => [
+            'api_url' => env('PAYFORU_URL'),
+            'client_id' => env('PAYFORU_API_KEY'),
+            'client_secret' => env('PAYFORU_API_SIGNATURE_KEY'),
+            'callback_url' => env('PAYFORU_CALLBACK'),
+            'additional' => [
+                'customer_id' => env('PAYFORU_CUSTOMER_ID'),
+            ],
 
-    'skypay' => [
-        'url' => env('SKYPAY_URL'),
-        'skey' => env('SKYPAY_SKEY'),
-        'back_url' => env('APP_URL'),
-        'callback_url' => env('SKYPAY_CALLBACK')
-    ],
+            'gateways' => File::get(storage_path('app/payments/payforu')),
+        ],
 
-    'payou' => [
-        'url' => env('PAYOU_URL'),
-        'skey' => env('PAYOU_SKEY'),
-        'mid' => (string) env('PAYOU_MID')
-    ],
+        'coinpay' => [
+            'api_url' => env('COINPAY_URL'),
+            'client_id' => (string) env('COINPAY_MID'),
+            'client_secret' => env('COINPAY_SKEY'),
+
+            'gateways' => File::get(storage_path('app/payments/payforu')),
+
+        ],
+
+        'kassify' => [
+            'api_url' => env('KASSIFY_URL'),
+            'client_id' => (string) env('KASSIFY_MID'),
+            'client_secret' => env('KASSIFY_SKEY'),
+
+            'gateways' => File::get(storage_path('app/payments/payforu')),
+        ],
+
+        'betatransfer' => [
+            'client_id' => env('BETATRANSFER_MID'),
+            'client_secret' => env('BETATRANSFER_SKEY'),
+            'api_url' => env('BETATRANSFER_URL'),
+
+            'gateways' => File::get(storage_path('app/payments/payforu')),
+        ],
+
+        'skypay' => [
+            'api_url' => env('SKYPAY_URL'),
+            'client_secret' => env('SKYPAY_SKEY'),
+            'callback_url' => env('SKYPAY_CALLBACK'),
+            'additional' => [
+                'back_url' => env('APP_URL'),
+            ],
+
+            'gateways' => File::get(storage_path('app/payments/payforu')),
+
+        ],
+
+        'payou' => [
+            'api_url' => env('PAYOU_URL'),
+            'client_secret' => env('PAYOU_SKEY'),
+            'client_id' => (string) env('PAYOU_MID')
+        ],
+
+        'gateways' => File::get(storage_path('app/payments/payou')),
+    ]
 ];

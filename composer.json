@@ -7,7 +7,6 @@
             "name": "author name"
         }
     ],
-    "homepage": "https://github.com/imunely/pay",
     "keywords": ["Laravel", "Pay"],
     "require": {
         "illuminate/support": "~9"
